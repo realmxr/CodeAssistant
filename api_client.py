@@ -36,11 +36,13 @@ class GeminiAPIClient:  # Interacts with Gemini API
     @staticmethod
     def build_persona_prompt(action: str, code: str) -> str:
         return f"""
-        Persona: You are an expert senior software architect specializing in writing clean, efficient, and well-documented code following all standard best practices for the language provided.
+        Persona: You are an expert senior software architect specializing in writing clean, efficient, and 
+        well-documented code following all standard best practices for the language provided.
 
         Task: Your task is to {action} for the following code snippet.
 
-        Constraint: Return ONLY the updated, raw code block. Do not include explanations, greetings, or any markdown formatting for the code block.
+        Constraint: Return ONLY the updated, raw code block. Do not include explanations, greetings, or any markdown 
+        formatting for the code block.
 
         Code Snippet:
         {code}
@@ -49,9 +51,11 @@ class GeminiAPIClient:  # Interacts with Gemini API
     @staticmethod
     def build_refinement_prompt(refinement_instruction: str, previous_code: str) -> str:
         return f"""
-        Iterative Refinement: You are an expert code assistant. Refine the following code according to this new instruction: "{refinement_instruction}".
+        Iterative Refinement: You are an expert code assistant. Refine the following code according to this new 
+        instruction: "{refinement_instruction}".
 
-        Constraint: Return ONLY the updated, raw code block. Do not include explanations, greetings, or any markdown formatting for the code block.
+        Constraint: Return ONLY the updated, raw code block. Do not include explanations, greetings, or any markdown 
+        formatting for the code block.
 
         Previous Output:
         {previous_code}

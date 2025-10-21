@@ -119,7 +119,7 @@ class CodeAssistantApp(ctk.CTk):
         self.refine_last_output(instruction)
 
     def import_file(self):
-        file_path = filedialog.askopenfilename(filetypes=[("Python Files", "*.py"), ("All Files", "*.*")])
+        file_path = filedialog.askopenfilename(filetypes=[("All Files", "*.*")])
         if file_path:
             with open(file_path, "r", encoding="utf-8") as file:
                 file_content = file.read()
@@ -135,8 +135,7 @@ class CodeAssistantApp(ctk.CTk):
             self.output_textbox.insert("1.0", "Error: No output to export.")
             return
 
-        file_path = filedialog.asksaveasfilename(defaultextension=".py",
-                                                 filetypes=[("Python Files", "*.py"), ("All Files", "*.*")])
+        file_path = filedialog.asksaveasfilename(filetypes=[("All Files", "*.*")])
         if file_path:
             try:
                 with open(file_path, "w", encoding="utf-8") as file:
