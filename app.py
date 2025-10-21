@@ -63,7 +63,7 @@ class CodeAssistantApp(ctk.CTk):
         self.input_textbox.grid(row=0, column=0, sticky="nsew", padx=(0, 5))
 
         # Placeholder management
-        self.input_placeholder = "# Paste or type your code here...\n# Or click 'Import File' to load a Python file"
+        self.input_placeholder = "# Paste or type your code here...\n# Or click 'Import File' to load a file"
         self.input_has_placeholder = True
         self.input_textbox.insert("1.0", self.input_placeholder)
         self.input_textbox.configure(text_color="#6c7a89")
@@ -90,7 +90,7 @@ class CodeAssistantApp(ctk.CTk):
         self.output_textbox.insert("1.0", "Processing...")
         self.update_idletasks()
 
-        prompt = self.api_client.build_prompt(action, input_code)
+        prompt = self.api_client.build_persona_prompt(action, input_code)
         thread = threading.Thread(target=self._api_worker, args=(prompt,), daemon=True)
         thread.start()
 
@@ -110,7 +110,7 @@ class CodeAssistantApp(ctk.CTk):
         self.output_textbox.insert("1.0", "Processing refinement...")
         self.update_idletasks()
 
-        prompt = self.api_client.build_prompt(f"Refine the following code according to this instruction: {refinement_instruction}", output_code)
+        prompt = self.api_client.build_refinement_prompt(refinement_instruction, output_code)
         thread = threading.Thread(target=self._api_worker, args=(prompt,), daemon=True)
         thread.start()
 

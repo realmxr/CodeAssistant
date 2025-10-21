@@ -36,7 +36,7 @@ class Sidebar(ctk.CTkFrame):
                                                   fg_color=Theme.YELLOW, hover_color=Theme.YELLOW_HOVER)
         self.generate_docs_button.grid(row=4, column=0, padx=20, pady=10)
 
-        self.refine_label = ctk.CTkLabel(self, text="Iterative Refinement",
+        self.refine_label = ctk.CTkLabel(self, text="Refine Output",
                                          font=ctk.CTkFont(size=14, weight="bold"))
         self.refine_label.grid(row=5, column=0, padx=20, pady=(20, 5))
 
@@ -95,4 +95,3 @@ class Sidebar(ctk.CTkFrame):
             self.refine_button.configure(state=state)
         except Exception:
             pass
-
